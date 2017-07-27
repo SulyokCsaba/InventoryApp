@@ -530,7 +530,7 @@ public class ProductEditorActivity extends AppCompatActivity {
             else{
                 quantity=0;
             }
-            double price = 0.0;;
+            double price = 0.0;
             if (!TextUtils.isEmpty(priceString)) {
                 price = Double.parseDouble(priceString);
             }
