@@ -12,9 +12,11 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -524,12 +526,16 @@ public class ProductEditorActivity extends AppCompatActivity {
 
             // Convert Strings to the corresponding data types for price and quantity
             int quantity;
-            if (!TextUtils.isEmpty(quantityString)) {
+            if (!TextUtils.isEmpty(quantityString)&&quantityString!="0") {
                 quantity = Integer.parseInt(quantityString);
+            }else{
+                quantity=1;
             }
-            else{
-                quantity=0;
+
+            if(!hasImage(productImage)){
+                return null;
             }
+
             double price = 0.0;
             if (!TextUtils.isEmpty(priceString)) {
                 price = Double.parseDouble(priceString);
@@ -573,6 +579,17 @@ public class ProductEditorActivity extends AppCompatActivity {
             }
 
             return true;
+        }
+
+        private boolean hasImage(@NonNull ImageView view) {
+            Drawable drawable = view.getDrawable();
+            boolean hasImage = (drawable != null);
+
+            if (hasImage && (drawable instanceof BitmapDrawable)) {
+                hasImage = ((BitmapDrawable)drawable).getBitmap() != null;
+            }
+
+            return hasImage;
         }
     }
 }
