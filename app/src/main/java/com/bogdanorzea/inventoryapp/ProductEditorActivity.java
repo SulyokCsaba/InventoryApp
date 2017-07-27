@@ -523,11 +523,14 @@ public class ProductEditorActivity extends AppCompatActivity {
             }
 
             // Convert Strings to the corresponding data types for price and quantity
-            int quantity = 0;
+            int quantity;
             if (!TextUtils.isEmpty(quantityString)) {
                 quantity = Integer.parseInt(quantityString);
             }
-            double price = 0.0;
+            else{
+                quantity=0;
+            }
+            double price = 0.0;;
             if (!TextUtils.isEmpty(priceString)) {
                 price = Double.parseDouble(priceString);
             }
