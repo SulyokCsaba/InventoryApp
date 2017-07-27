@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">Inventory App</string>
+
+    <!--Main activity-->
+    <string name="product_price">Price:</string>
+    <string name="product_quantity">Quantity:</string>
+    <string name="button_sell">Sell</string>
+    <string name="action_add">Add new product</string>
+    <string name="action_delete_all">Delete all products</string>
+    <string name="empty_text">Add products to the list\nusing the menu button.</string>
+    <string name="sell_decrease_successfully">Quantity decreased by one</string>
+    <string name="sell_decrease_error">Error decreasing quantity</string>
+    <string name="sell_decrease_negative_error">Cannot have negative quantity</string>
+    <string name="main_delete_all_failed">Failed to delete all products</string>
+    <string name="main_delete_all_successful">All products successfully deleted</string>
+    <string name="delete_all_message">Do you want to delete all products?</string>
+
+    <!--Editor activity-->
+    <string name="editor_product_name">Product name</string>
+    <string name="editor_product_price">Product price</string>
+    <string name="editor_product_quantity">Product quantity</string>
+    <string name="editor_product_description">Product description</string>
+    <string name="action_insert">Insert product</string>
+    <string name="action_delete">Delete product</string>
+    <string name="editor_insert_successfully">Product added successfully</string>
+    <string name="editor_insert_error">Error inserting product</string>
+    <string name="editor_delete_failed">Failed to delete product</string>
+    <string name="editor_delete_successful">Product successfully deleted</string>
+    <string name="editor_insert_incomplete">Incomplete product information</string>
+    <string name="editor_update_successfully">Product update successfully</string>
+    <string name="editor_update_error">Failed to update product</string>
+    <string name="editor_title_edit">Edit product</string>
+    <string name="editor_title_add">Add product</string>
+    <string name="delete_message">Do you want to delete product?</string>
+    <string name="alert_yes">Yes</string>
+    <string name="alert_no">No</string>
+    <string name="quantity_negative_error">Cannot have negative quantity</string>
+    <string name="quantity_maximum_error">Maximum value for quantity reached</string>
+    <string name="editor_name_required">Name required</string>
+    <string name="editor_price_required">Price required</string>
+    <string name="discard_message">Do you want to discard changes?</string>
+    <string name="editor_product_supplier">Supplier name</string>
+    <string name="editor_product_supplier_email">Product supplier e-mail</string>
+    <string name="editor_supplier_required">Supplier name required</string>
+    <string name="editor_supplier_email_required">Supplier e-mail address required</string>
+    <string name="editor_product_photo">Product photo</string>
+    <string name="order_product">Order product</string>
+    <string name="editor_supplier_email_invalid">Invalid e-mail address</string>
+    <string name="choose_photo">Choose…</string>
+</resources>

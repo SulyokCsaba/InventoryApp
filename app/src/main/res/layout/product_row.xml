@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp">
+
+    <!--NAME-->
+    <TextView
+        android:id="@+id/name"
+        style="@style/main_product_values"
+        android:layout_width="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/sell"
+        android:layout_toStartOf="@+id/sell"
+        android:ellipsize="end"
+        android:lines="1"
+        android:textSize="24sp"
+        tools:text="Computer" />
+
+    <!--PRICE-->
+    <TextView
+        android:id="@+id/price_info"
+        style="@style/main_product_description"
+        android:layout_below="@id/name"
+        android:text="@string/product_price" />
+
+    <TextView
+        android:id="@+id/price"
+        style="@style/main_product_values"
+        android:layout_alignBaseline="@id/price_info"
+        android:layout_toEndOf="@+id/price_info"
+        android:layout_toRightOf="@+id/price_info"
+        tools:text="$99.99" />
+
+    <!--QUANTITY-->
+    <TextView
+        android:id="@+id/quantity_info"
+        style="@style/main_product_description"
+        android:layout_below="@id/price_info"
+        android:text="@string/product_quantity" />
+
+    <TextView
+        android:id="@+id/quantity"
+        style="@style/main_product_values"
+        android:layout_alignBaseline="@id/quantity_info"
+        android:layout_toEndOf="@+id/quantity_info"
+        android:layout_toRightOf="@+id/quantity_info"
+        tools:text="5" />
+
+    <!--SELL BUTTON-->
+    <Button
+        android:id="@+id/sell"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:text="@string/button_sell"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="18sp" />
+
+</RelativeLayout>
