@@ -518,22 +518,23 @@ public class ProductEditorActivity extends AppCompatActivity {
         @Override
         protected Boolean doInBackground(Void... params) {
             // Prevent adding products that do not have a valid name, quantity or price
-            if (TextUtils.isEmpty(nameString) || TextUtils.isEmpty(quantityString) || TextUtils.isEmpty(priceString) ||
+            if (TextUtils.isEmpty(nameString) || TextUtils.isEmpty(quantityString) || quantityString.equals("0") || TextUtils.isEmpty(priceString) ||
                     TextUtils.isEmpty(supplierString) || TextUtils.isEmpty(supplierEmailString)) {
                 publishProgress(R.string.editor_insert_incomplete);
                 return false;
             }
 
+            if (!hasImage(productImage)) {
+                publishProgress(R.string.editor_image_incomplete);
+                return false;
+            }
+
             // Convert Strings to the corresponding data types for price and quantity
             int quantity;
-            if (!TextUtils.isEmpty(quantityString)&&quantityString!="0") {
+            if (!TextUtils.isEmpty(quantityString)&&quantityString.equals("0")) {
                 quantity = Integer.parseInt(quantityString);
             }else{
                 quantity=1;
-            }
-
-            if(!hasImage(productImage)){
-                return null;
             }
 
             double price = 0.0;
