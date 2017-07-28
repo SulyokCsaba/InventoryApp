@@ -16,6 +16,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -36,9 +37,12 @@ import com.bogdanorzea.inventoryapp.data.InventoryContract.ProductEntry;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 
 public class ProductEditorActivity extends AppCompatActivity {
+    private Bitmap inventory_image;
+
     private static final String LOG_TAG = ProductEditorActivity.class.getSimpleName();
     private static final int REQUEST_CODE = 1;
     private static final int LOADER_INITIALIZE = 0;
@@ -102,6 +106,13 @@ public class ProductEditorActivity extends AppCompatActivity {
                 String supplierEmail = data.getString(supplierEmailColumnIndex);
                 byte[] imgByte = data.getBlob(photoColumnIndex);
 
+                if (imgByte == null) {
+                    productImage.setImageResource(R.drawable.image_not_found);
+                } else {
+                    Bitmap image = BitmapFactory.decodeByteArray(imgByte, 0, imgByte.length);
+                    productImage.setImageBitmap(image);
+
+                }
 
                 // Set data to the corresponding EditText
                 nameEditText.setText(name);
@@ -130,10 +141,15 @@ public class ProductEditorActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            new LoadImageAsyncTask().execute(data);
-        }
+            Uri imageUri = data.getData();
 
-        super.onActivityResult(requestCode, resultCode, data);
+            try {
+                inventory_image = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+            } catch (IOException ie) {
+                ie.printStackTrace();
+            }
+            productImage.setImageBitmap(inventory_image);
+        }
     }
 
     @Override
@@ -519,13 +535,9 @@ public class ProductEditorActivity extends AppCompatActivity {
         protected Boolean doInBackground(Void... params) {
             // Prevent adding products that do not have a valid name, quantity or price
             if (TextUtils.isEmpty(nameString) || TextUtils.isEmpty(quantityString) || quantityString.equals("0") || TextUtils.isEmpty(priceString) ||
-                    TextUtils.isEmpty(supplierString) || TextUtils.isEmpty(supplierEmailString)) {
+                    TextUtils.isEmpty(supplierString) || TextUtils.isEmpty(supplierEmailString)
+                    ) {
                 publishProgress(R.string.editor_insert_incomplete);
-                return false;
-            }
-
-            if (!hasImage(productImage)) {
-                publishProgress(R.string.editor_image_incomplete);
                 return false;
             }
 
@@ -536,6 +548,11 @@ public class ProductEditorActivity extends AppCompatActivity {
             }else{
                 quantity=1;
             }
+
+            if(bitmap == null) {
+                publishProgress(R.string.editor_insert_incomplete);
+                return false;
+            };
 
             double price = 0.0;
             if (!TextUtils.isEmpty(priceString)) {
