@@ -27,6 +27,7 @@
     <string name="editor_delete_failed">Failed to delete product</string>
     <string name="editor_delete_successful">Product successfully deleted</string>
     <string name="editor_insert_incomplete">Incomplete product information</string>
+    <string name="editor_image_incomplete">Incomplete image data</string>
     <string name="editor_update_successfully">Product update successfully</string>
     <string name="editor_update_error">Failed to update product</string>
     <string name="editor_title_edit">Edit product</string>
@@ -45,6 +46,7 @@
     <string name="editor_supplier_email_required">Supplier e-mail address required</string>
     <string name="editor_product_photo">Product photo</string>
     <string name="order_product">Order product</string>
+    <string name="no_image">No Image, Upload one!</string>
     <string name="editor_supplier_email_invalid">Invalid e-mail address</string>
     <string name="choose_photo">Choose…</string>
 </resources>
